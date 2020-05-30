@@ -53,3 +53,7 @@ QA.log("Hello world!")
 
 Every time something is logged, a notification is posted showing how many lines 
 have been logged so far. You can use this notification to clear the log.
+
+## License
+
+This library is MIT licensed.
