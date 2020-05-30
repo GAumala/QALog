@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gaumala.qalog" >
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <application>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.gaumala.qalog.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/qa_log_paths" />
+
+        </provider>
+
+        <service android:name="com.gaumala.qalog.service.QALogService" />
+        <service android:name="com.gaumala.qalog.service.QAClearLogService" />
+    </application>
+</manifest>

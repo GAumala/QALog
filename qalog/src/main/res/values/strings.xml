@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">QA Log</string>
+    <string name="qa_log">QA Log</string>
+    <string name="qa_log_notif_channel_desc">Easy access to application logs</string>
+    <string name="qa_log_share_log">Share log</string>
+    <string name="qa_log_clear_log">Clear log</string>
+    <string name="qa_log_lines_logged">%s has logged %d lines</string>
+</resources>
