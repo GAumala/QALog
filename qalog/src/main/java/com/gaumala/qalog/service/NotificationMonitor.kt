@@ -41,8 +41,8 @@ class NotificationMonitor(private val ctx: Context): PrinterMonitor {
 
     private fun createNotification(count: Int): Notification {
         val appName = ctx.getString(R.string.app_name)
-        val contentTemplate = ctx.getString(R.string.qa_log_lines_logged)
-        val contentText = String.format(contentTemplate, appName, count)
+        val contentText = ctx.resources.getQuantityString(
+            R.plurals.qa_log_lines_logged, count, appName, count)
 
         return notificationBuilderCompat(ctx, channelId)
             .setSmallIcon(R.drawable.ic_qa_log_adb_black_24dp)
