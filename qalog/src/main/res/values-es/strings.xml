@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="qa_log_notif_channel_desc">Monitoreo de logs de la aplicación</string>
+    <string name="qa_log_goto_settings">Ir a ajustes</string>
+    <string name="qa_log_share_log">Compartir logs</string>
+    <string name="qa_log_clear_log">Borrar logs</string>
+    <string name="qa_log_lines_logged">%s tiene %d líneas en sus logs</string>
+    <string name="qa_log_permissions_required_msg">Se requieren permisos de "draw overlays" para compartir logs de la aplicación. Por favor ve a ajustes de la aplicación y chequea la opción \"Permitir mostrar sobre otras apps\".</string>
+    <string name="qa_log_share_with_title">Share logs with…</string>
+</resources>

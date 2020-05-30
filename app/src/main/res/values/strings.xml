@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QA Log</string>
+    <string name="app_name">QA Log Sample</string>
     <string name="append_to_log">Append to log</string>
     <string name="this_is_a_secondary_activity">This is a secondary activity</string>
     <string name="launch_secondary_activity">Launch secondary activity</string>

@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">QA Log</string>
-    <string name="qa_log">QA Log</string>
-    <string name="qa_log_notif_channel_desc">Easy access to application logs</string>
+    <string name="app_name" translatable="false">QA Log</string>
+    <string name="qa_log" translatable="false">QA Log</string>
+    <string name="qa_log_notif_channel_desc">Monitors application logs</string>
+    <string name="qa_log_goto_settings">Go to settings</string>
     <string name="qa_log_share_log">Share log</string>
     <string name="qa_log_clear_log">Clear log</string>
     <string name="qa_log_lines_logged">%s has logged %d lines</string>
+    <string name="qa_log_permissions_required_msg">Draw overlays permissions are required to share application logs. Please go to app settings and check the option \"Allow display over other apps\".</string>
+    <string name="qa_log_share_with_title">Share logs with…</string>
 </resources>

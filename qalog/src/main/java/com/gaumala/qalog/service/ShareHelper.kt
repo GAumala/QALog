@@ -41,13 +41,14 @@ object ShareHelper {
         val uri = if (logFile.length() == 0L) null
                 else getUriForFile(ctx, authority, logFile)
         val appName = ctx.getString(R.string.app_name)
+        val title = ctx.getString(R.string.qa_log_share_with_title)
         val intent = Intent(ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Logs from $appName")
+        intent.putExtra(Intent.EXTRA_SUBJECT, "$appName logs")
         intent.putExtra(Intent.EXTRA_TEXT, createIntentBody())
         intent.putExtra(Intent.EXTRA_STREAM, uri)
 
-        val chooserIntent = Intent.createChooser(intent, "Share logs with...")
+        val chooserIntent = Intent.createChooser(intent, title)
         chooserIntent.flags = FLAG_ACTIVITY_NEW_TASK
         startActivity(ctx, chooserIntent, null)
     }
