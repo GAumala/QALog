@@ -11,7 +11,6 @@ import android.os.Build
 import com.gaumala.qalog.R
 
 object ShareHelper {
-    private const val authority = "com.gaumala.qalog.fileprovider"
 
     private fun createIntentBody(): String {
         return ("Device Info:"
@@ -33,6 +32,7 @@ object ShareHelper {
     }
 
     fun sendShareIntent(ctx: Context, logFile: File) {
+        val authority = "${ctx.packageName}.fileprovider"
         val uri = if (logFile.length() == 0L) null
                 else getUriForFile(ctx, authority, logFile)
         val appName = ctx.getString(R.string.app_name)
