@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PixelFormat
 import android.os.Build
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
@@ -12,7 +11,6 @@ import android.view.MotionEvent.*
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import com.gaumala.qalog.R
 import kotlin.math.abs
 import kotlin.math.max
@@ -36,7 +34,7 @@ class ShareButton(ctx: Context) {
         wm.addView(view, params)
     }
 
-    var clickListener = { -> }
+    var clickListener = { }
 
     private fun createOnTouchListener(updatePosition: (Float, Float) -> Unit): View.OnTouchListener {
         return object: View.OnTouchListener {
@@ -68,7 +66,6 @@ class ShareButton(ctx: Context) {
                     ACTION_UP -> {
                         val distanceDiff = max(abs(e.rawX - xStart), abs(e.rawY - yStart))
                         val timeDiff = System.currentTimeMillis() - touchBeganAt
-                        Log.d("QALogService", "ACTION_UP $timeDiff / $maxClickDuration || $distanceDiff / $maxClickDistance")
                         if (timeDiff < maxClickDuration
                             && distanceDiff < maxClickDistance)
                             clickListener()
@@ -117,7 +114,7 @@ class ShareButton(ctx: Context) {
             val padding = dpToPx(ctx, 16).toInt()
             view.setImageResource(R.drawable.ic_qa_log_share_white_24dp)
             view.setPadding(padding, padding, padding, padding)
-            view.background = ContextCompat.getDrawable(ctx, R.drawable.qa_log_btn_bg)
+            view.setBackgroundResource(R.drawable.qa_log_btn_bg)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 view.elevation = dpToPx(ctx, 4)
