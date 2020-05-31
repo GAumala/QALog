@@ -1,3 +1,4 @@
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -5,6 +6,21 @@ apply plugin: 'kotlin-android-extensions'
 // Jitpack config
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.GAumala'
+
+// publish with ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+publish {
+    def groupProjectID = 'com.gaumala'
+    def artifactProjectID = 'qalog'
+    def publishVersionID = '1.0.0'
+
+    userOrg = 'gaumala'
+    repoName = 'QALog'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'A logger for QA builds of Android apps'
+    website = 'https://github.com/GAumala/QALog'
+}
 
 android {
     compileSdkVersion 29
