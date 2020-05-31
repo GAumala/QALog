@@ -1,4 +1,4 @@
-# QALog
+# QALog [![CircleCI](https://circleci.com/gh/GAumala/QALog.svg?style=svg)](https://circleci.com/gh/GAumala/QALog) [ ![Download](https://api.bintray.com/packages/gaumala/QALog/qalog/images/download.svg?version=1.0.0) ](https://bintray.com/gaumala/QALog/qalog/1.0.0/link)
 
 A library to easily log specific events in your application and share them 
 through other apps in your device with a few clicks.  
