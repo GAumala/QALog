@@ -46,18 +46,7 @@ many lines of code to your app. It is recommended to do this on a separate
 branch. First include the library in your `build.gradle`. 
 
 ```
-implementation 'com.github.GAumala:QALog:1.0.0'
-```
-
-This uses Jitpack, so if you don't already have that repository included,
-do it now.
-
-``` diff
-repositories {
-        google()
-        jcenter()
-+        maven { url 'https://jitpack.io' }
-    }
+implementation 'com.gaumala.qalog:1.0.0'
 ```
 
 To show the share logs widget on top of a particular activity, it should run 
