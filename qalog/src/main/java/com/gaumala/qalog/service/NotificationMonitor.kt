@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.gaumala.qalog.QAClearLogService
 import com.gaumala.qalog.R
 import com.gaumala.qalog.printer.PrinterMonitor
 import com.gaumala.qalog.utils.*

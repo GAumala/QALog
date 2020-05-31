@@ -1,15 +1,16 @@
-package com.gaumala.qalog.service
+package com.gaumala.qalog
 
 import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
-import com.gaumala.qalog.QA
 import com.gaumala.qalog.printer.*
 import com.gaumala.qalog.printer.DefaultFormatter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
+import com.gaumala.qalog.service.LogFilePrinter
+import com.gaumala.qalog.service.NotificationMonitor
+import com.gaumala.qalog.service.ShareHelper
+import com.gaumala.qalog.service.UI
+import kotlinx.coroutines.*
 import java.io.File
 
 open class QALogService: Service() {
@@ -28,8 +29,9 @@ open class QALogService: Service() {
     }
 
     private val printerQueue by lazy {
+        val channel = QA.logger.channel
         val receiver =
-            PrinterMsgReceiver(bufferTimeout, QA.logger.channel)
+            PrinterMsgReceiver(bufferTimeout, channel)
         PrinterQueue(
             scope = coroutineScope,
             formatter = createFormatter(),
@@ -45,14 +47,16 @@ open class QALogService: Service() {
      * {@link LogPrinter#print(String)} with the buffered
      * text
      */
-    open val bufferTimeout: Long = DEFAULT_BUFFER_TIMEOUT
+    open val bufferTimeout: Long =
+        DEFAULT_BUFFER_TIMEOUT
 
     /**
      * Maximum amount of log writes that the queue should
      * buffer before {@link LogPrinter#print(String)} with
      * the buffered text. This has precedence over timeout.
      */
-    open val bufferMaxCapacity: Int = DEFAULT_BUFFER_MAX_CAPACITY
+    open val bufferMaxCapacity: Int =
+        DEFAULT_BUFFER_MAX_CAPACITY
 
     /**
      * Override this method to use a custom formatter
@@ -83,10 +87,30 @@ open class QALogService: Service() {
         ui.clear()
     }
 
+    private fun createFileToExport(): File {
+        val logPath = File(cacheDir, "qa_log")
+        logPath.mkdir()
+        return File(logPath, "exported_log.txt")
+    }
+
+    private fun shareLogs()  {
+        coroutineScope.launch(Dispatchers.IO) {
+            val file = createFileToExport()
+            val outputStream = file.outputStream()
+            QA.logger.copy(outputStream).await()
+            outputStream.close()
+
+            launch(Dispatchers.Main) {
+                ShareHelper.sendShareIntent(
+                    this@QALogService, file)
+            }
+        }
+    }
+
     override fun onBind(p0: Intent?): IBinder? {
         printerQueue.run()
         ui.setOnClickListener {
-            ShareHelper.shareLogs(this@QALogService, coroutineScope)
+            shareLogs()
         }
         return object: Binder() { }
     }

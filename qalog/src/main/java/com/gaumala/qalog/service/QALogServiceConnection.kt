@@ -9,6 +9,7 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
+import com.gaumala.qalog.QALogService
 import com.gaumala.qalog.R
 
 class QALogServiceConnection(canLaunchSettings: Boolean = true) : ServiceConnection {

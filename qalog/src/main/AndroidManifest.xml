@@ -6,7 +6,7 @@
     <application>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.gaumala.qalog.fileprovider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -15,7 +15,7 @@
 
         </provider>
 
-        <service android:name="com.gaumala.qalog.service.QALogService" />
-        <service android:name="com.gaumala.qalog.service.QAClearLogService" />
+        <service android:name="com.gaumala.qalog.QALogService" />
+        <service android:name="com.gaumala.qalog.QAClearLogService" />
     </application>
 </manifest>
