@@ -39,13 +39,6 @@ https://kotlinlang.org/docs/reference/coroutines-overview.html) and channels
 to make queue log writes so that it is thread-safe. When the button is clicked
 the service makes a copy of the current logs and shares it via `Intent`.
 
-When you launch your activity you should bind to 
-`QALogService` so that it can persist your logs to a private file and draw an 
-overlay widget that testers can click to share that file.
-
-It is not necessary to bind to the service on every activity for logging to 
-work. Logs will be queued until the service starts. 
-
 ## Setup
 
 You should be able to set this up pretty quickly, without having to add too 
@@ -67,7 +60,7 @@ repositories {
     }
 ```
 
-On every activity that you want the share logs widget to be visible run to 
+To show the share logs widget on top of a particular activity, it should run 
 `QALogService` [as a bound service](
 https://developer.android.com/guide/components/bound-services). You also have 
 to ensure that the tester grants draw overlay permissions to the app because
@@ -98,6 +91,11 @@ For instance, if the app doesn't have the necessary permissions, the `bind()`
 method will show an alert dialog informing the tester about the problem and 
 then launch App Settings so that they can grant the permission.
 
+Not every activity has to bind to the service. If the service is not running
+while data is being logged, the data will simply be queued until the service
+starts. Just be aware that if the process dies before that happens the data 
+is lost.
+
 ## Usage
 
 To log information in a particular line of code use the singleton object `QA`:
@@ -106,10 +104,10 @@ To log information in a particular line of code use the singleton object `QA`:
 QA.log("Hello world!")
 ```
 
-Please not that you won't see this in logcat or something like that. It is 
-written to a private file.
+You won't see this in logcat or something like that. Data is written to a 
+private file.
 
-Every time something is logged, a notification is posted showing how many lines 
+Every time something is logged, a notification is posted showing how many lines
 have been logged so far. This notification can be used to clear the logs.
 
 ![Notification](https://user-images.githubusercontent.com/5729175/83346038-cfbe0e00-a2de-11ea-9b2e-11d56966180a.png)
