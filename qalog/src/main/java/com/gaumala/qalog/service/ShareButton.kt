@@ -82,7 +82,7 @@ class ShareButton(ctx: Context) {
     private fun createLayoutParams(ctx: Context): WindowManager.LayoutParams {
         @Suppress("DEPRECATION") val type =
             if (Build.VERSION.SDK_INT < 26)
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY
+                WindowManager.LayoutParams.TYPE_PHONE
             else
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
 
