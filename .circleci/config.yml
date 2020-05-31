@@ -11,3 +11,6 @@ jobs:
       - checkout
       - run:
           command: ./gradlew lint test
+      - store_test_results: 
+          path: qalog/build/test-results
+
