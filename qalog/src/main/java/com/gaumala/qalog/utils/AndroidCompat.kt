@@ -3,7 +3,6 @@ package com.gaumala.qalog.utils
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.Service
 import android.content.Context
 import android.media.AudioAttributes
 import android.net.Uri
@@ -20,27 +19,14 @@ fun notificationBuilderCompat(ctx: Context,
 
 }
 
-@Suppress("DEPRECATION")
-fun Notification.Builder.setSoundCompat(sound: Uri?): Notification.Builder {
-    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
-        this.setSound(sound)
-    else
-        this
-}
 
+@Suppress("DEPRECATION")
 fun getMediumPriorityConst(): Int =
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
         Notification.PRIORITY_DEFAULT
     else
         NotificationManager.IMPORTANCE_DEFAULT
 
-@Suppress("DEPRECATION")
-fun Notification.Builder.setPriorityCompat(priority: Int): Notification.Builder {
-    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
-        this.setPriority(priority)
-    else
-        this
-}
 
 fun Context.registerNotificationChannelCompat(
     channelId: String,
