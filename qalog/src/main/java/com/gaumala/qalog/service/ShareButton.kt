@@ -98,6 +98,7 @@ class ShareButton(ctx: Context) {
         )
 
         params.gravity = Gravity.TOP or Gravity.END
+        params.y = dpToPx(ctx, 100).toInt()
         return params
     }
 
