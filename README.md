@@ -36,7 +36,7 @@ of all other apps using the draw overlays permission. By drawing on top of
 the application, no changes to the actual application UI are necessary. This 
 service uses [Kotlin coroutines](
 https://kotlinlang.org/docs/reference/coroutines-overview.html) and channels 
-to make queue log writes so that it is thread-safe. When the button is clicked
+to queue log writes and ensure thread-safe logging. When the button is clickeand
 the service makes a copy of the current logs and shares it via `Intent`.
 
 ## Setup
@@ -50,10 +50,11 @@ implementation 'com.gaumala.qalog:1.0.0'
 ```
 
 To show the share logs widget on top of a particular activity, it should run 
-`QALogService` [as a bound service](
-https://developer.android.com/guide/components/bound-services). You also have 
-to ensure that the tester grants draw overlay permissions to the app because
-this may not be granted on install. 
+`QALogService`. It is designed to be used [as a bound service](
+https://developer.android.com/guide/components/bound-services) so that the 
+widget is only drawn when your application is active. You also have to ensure 
+that the tester grants draw overlay permissions to the app because this may not 
+be granted automatically on install. 
 
 If binding to a service and managing permissions sounds like too much 
 boilerplate for you (it really is!), you can use the helper class 
